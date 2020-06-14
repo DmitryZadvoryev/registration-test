@@ -14,8 +14,6 @@ import static constant.Constant.ROOT;
  */
 public class AccountPage {
 
-    private By editButtonLocator = By.cssSelector("button[class = 'c-user-details-panel_button c-user-details-panel_button--deemphasised']");
-
     private By saveButtonLocator = By.cssSelector("button[class = 'c-user-details-panel_button']");
 
     private By firstNameInputLocator = By.cssSelector("input[name = 'firstName']");
@@ -30,7 +28,9 @@ public class AccountPage {
 
     private By phoneNumberLocator = By.name("phoneNumber");
 
-    private By formLocator  = By.cssSelector("form[name = 'form']");
+    private By formLocator = By.cssSelector("form[name = 'form']");
+
+    private By editButtonLocator = By.xpath("//*[text() = 'Edit']");
 
     private final WebDriver driver;
 
@@ -38,12 +38,20 @@ public class AccountPage {
 
     public AccountPage(WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver,10);
+        wait = new WebDriverWait(driver, 10);
     }
 
     public void openAccountPage() {
         driver.get(ROOT + "account");
+        waitForm();
+    }
+
+    public void waitForm() {
         wait.until(ExpectedConditions.presenceOfElementLocated(formLocator));
+    }
+
+    public void waitEditButton() {
+        wait.until(ExpectedConditions.presenceOfElementLocated(editButtonLocator));
     }
 
     public AccountPage typeFirstName(String firstName) {

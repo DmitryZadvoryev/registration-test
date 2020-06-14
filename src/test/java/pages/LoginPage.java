@@ -16,7 +16,7 @@ import static constant.Constant.ROOT;
  */
 public class LoginPage {
 
-    By usingEmailLocator = By.cssSelector("a[class = 'c-credential-input_picker-choice']");
+    By usingEmailLocator = By.cssSelector("input[name = 'email']");
 
     By phoneNumberLocator = By.cssSelector("input[name = 'phonePhoneNumber']");
 
@@ -39,6 +39,10 @@ public class LoginPage {
 
     public void openLoginPage() {
         driver.get(ROOT + "login");
+        waitForm();
+    }
+
+    public void waitForm() {
         wait.until(ExpectedConditions.presenceOfElementLocated(formLocator));
     }
 

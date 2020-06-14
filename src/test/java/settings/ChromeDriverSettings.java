@@ -8,7 +8,7 @@ import org.testng.annotations.BeforeTest;
 /**
  * Driver settings are stored in this class
  */
-public class ChromeDriverSettings{
+public class ChromeDriverSettings {
 
     public WebDriver driver;
 
@@ -20,7 +20,7 @@ public class ChromeDriverSettings{
     }
 
     @AfterTest
-    public void tearDown(){
+    public void tearDown() {
         driver.close();
     }
 }

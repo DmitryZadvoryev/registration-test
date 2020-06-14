@@ -43,48 +43,16 @@ public class RegistrationPage {
 
     public RegistrationPage(WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver,10);
+        wait = new WebDriverWait(driver, 10);
     }
 
     public void openRegistrationPage() {
         driver.get(ROOT + "registration");
+        waitForm();
+    }
+
+    public void waitForm() {
         wait.until(ExpectedConditions.presenceOfElementLocated(formLocator));
-    }
-
-    public By getFirstNameLocator() {
-        return firstNameLocator;
-    }
-
-    public By getLastNameLocator() {
-        return lastNameLocator;
-    }
-
-    public By getCodeLocator() {
-        return codeLocator;
-    }
-
-    public By getPhoneNumberLocator() {
-        return phoneNumberLocator;
-    }
-
-    public By getEmailLocator() {
-        return emailLocator;
-    }
-
-    public By getPasswordLocator() {
-        return passwordLocator;
-    }
-
-    public By getInviteCodeLocator() {
-        return inviteCodeLocator;
-    }
-
-    public By getTermsAndConditionLocator() {
-        return termsAndConditionLocator;
-    }
-
-    public By getRegistrationButtonLocator() {
-        return registrationButtonLocator;
     }
 
     public RegistrationPage typeFirstName(String firstName) {
@@ -143,7 +111,7 @@ public class RegistrationPage {
         typeEmail(email);
         typePassword(password);
         typeInviteCode();
-       //selectTermsAndConditions();
+        //selectTermsAndConditions();
 
         return registration();
     }

@@ -1,9 +1,8 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.AccountPage;
+import pages.DashboardPage;
 import pages.LoginPage;
 import pages.RegistrationPage;
 import settings.ChromeDriverSettings;
@@ -16,30 +15,29 @@ public class RegistrationTest extends ChromeDriverSettings {
         final String firstName = "FirstName";
         final String lastName = "LastName";
         final String code = "+965";
-        final String phoneNumber = "77711336";
+        final String phoneNumber = "1112233";
         final String email = "qwerty@gmail.com";
         final String password = "1234567890";
 
         final String changeFirstName = "Low";
         final String changeLastName = "Bob";
 
-        final RegistrationPage registrationPage = new RegistrationPage(driver);
-        final LoginPage loginPage = new LoginPage(driver);
-        final AccountPage accountPage = new AccountPage(driver);
-        final WebDriverWait wait = new WebDriverWait(driver, 10);
-
+        final RegistrationPage registrationPage = PageFactory.initElements(driver, RegistrationPage.class);
+        final LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+        final AccountPage accountPage = PageFactory.initElements(driver, AccountPage.class);
+        final DashboardPage dashboardPage = PageFactory.initElements(driver, DashboardPage.class);
         /*
          * Registration
          */
         registrationPage.openRegistrationPage();
         registrationPage.accountRegistration(firstName, lastName, code, phoneNumber, email, password);
-        wait.until(ExpectedConditions.urlToBe("https://preprod-business.draewil.net/#!/dashboard"));
+        dashboardPage.checkUrl();
         /*
          * Login
          */
         loginPage.openLoginPage();
         loginPage.loginUsingPhone(code, phoneNumber, password);
-        wait.until(ExpectedConditions.urlToBe("https://preprod-business.draewil.net/#!/dashboard"));
+        dashboardPage.checkUrl();
         accountPage.openAccountPage();
         /*
          * Verification of user data after registration
@@ -57,7 +55,7 @@ public class RegistrationTest extends ChromeDriverSettings {
          */
         accountPage.openAccountPage();
         accountPage.editFirstAndLastName(changeFirstName, changeLastName);
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text() = 'Edit']")));
+        accountPage.waitEditButton();
         /*
          * Verifying user data after changes
          */

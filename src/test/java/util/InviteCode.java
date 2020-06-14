@@ -17,10 +17,10 @@ public class InviteCode {
         return sb.toString();
     }
 
-    public static String getNumberOfMonth(int value){
-        if(value < 10){
+    public static String getNumberOfMonth(int value) {
+        if (value < 10) {
             return "0" + value;
-        }else {
+        } else {
             return String.valueOf(value);
         }
     }
