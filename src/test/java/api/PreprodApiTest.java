@@ -18,9 +18,9 @@ import util.InviteCode;
 import javax.net.ssl.HttpsURLConnection;
 import java.io.IOException;
 
-public class RegistrationApiTest {
+public class PreprodApiTest {
 
-    @Test
+    @Test(description = "Test will perform success api registration and will perform change of first name and last name")
     public void ApiTest() throws IOException {
 
         //Data
