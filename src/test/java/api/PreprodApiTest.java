@@ -10,6 +10,7 @@ import api.service.RegistrationService;
 import api.service.UpdateUserService;
 import api.service.UserService;
 import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -20,28 +21,35 @@ import java.io.IOException;
 
 public class PreprodApiTest {
 
-    @Test(description = "Test will perform success api registration and will perform change of first name and last name")
-    public void ApiTest() throws IOException {
+   private final Registration registrationData = new Registration();
+   private final Authorization authorizationData = new Authorization();
+   private Retrofit retrofit;
+
+    @BeforeTest
+    public void SetUp(){
 
         //Data
-        Registration registrationData = new Registration();
         registrationData.setId("");
         registrationData.setFirstName("Low");
         registrationData.setLastName("Bob");
         registrationData.setFullName("");
-        registrationData.setEmail("bbbb@mail.ru");
+        registrationData.setEmail("ccc@mail.ru");
         registrationData.setCountryDiallingCode("965");
-        registrationData.setPhoneNumber("53535356666");
+        registrationData.setPhoneNumber("535353566666");
         registrationData.setPassword("12345");
         registrationData.setInviteCode(InviteCode.getCurrentInviteCode());
         registrationData.setRole("d7ae2711-924a-4141-ac69-23e5e94d6102");
 
-        Authorization authorizationData = new Authorization();
-        authorizationData.setEmail("bbbb@mail.ru");
+        authorizationData.setEmail("ccc@mail.ru");
         authorizationData.setPassword("12345");
 
         //Client
-        Retrofit retrofit = APIClient.getClient();
+        retrofit = APIClient.getClient();
+
+    }
+
+    @Test(description = "Test will perform success api registration and will perform change of first name and last name")
+    public void ApiTest() throws IOException {
 
         //Registration
         RegistrationService service = retrofit.create(RegistrationService.class);
