@@ -33,14 +33,14 @@ public class PreprodApiTest {
         registrationData.setFirstName("Low");
         registrationData.setLastName("Bob");
         registrationData.setFullName("");
-        registrationData.setEmail("ccc@mail.ru");
+        registrationData.setEmail("cccc@mail.ru");
         registrationData.setCountryDiallingCode("965");
-        registrationData.setPhoneNumber("535353566666");
+        registrationData.setPhoneNumber("5353535666666");
         registrationData.setPassword("12345");
         registrationData.setInviteCode(InviteCode.getCurrentInviteCode());
         registrationData.setRole("d7ae2711-924a-4141-ac69-23e5e94d6102");
 
-        authorizationData.setEmail("ccc@mail.ru");
+        authorizationData.setEmail("cccc@mail.ru");
         authorizationData.setPassword("12345");
 
         //Client
@@ -93,8 +93,13 @@ public class PreprodApiTest {
         //User data update
         UpdateUserService updateUserService = retrofit.create(UpdateUserService.class);
         Response<UserInfo> update = updateUserService.update(userId, token, userInfo).execute();
+        boolean successfulUpdate = update.isSuccessful();
+        int updateSuccessCode = update.code();
         String actualUpdatedFirstName = update.body().getFirstName();
         String actualUpdatedLastMame = update.body().getLastName();
+
+        Assert.assertEquals(updateSuccessCode, HttpsURLConnection.HTTP_CREATED);
+        Assert.assertTrue(successfulUpdate);
 
         //Checking user data after update
         Assert.assertEquals(actualUpdatedFirstName, userInfo.getFirstName());
