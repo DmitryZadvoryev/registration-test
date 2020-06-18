@@ -1,4 +1,4 @@
-package settings;
+package selenium.settings;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -6,7 +6,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
 /**
- * Driver settings are stored in this class
+ * Driver selenium.settings are stored in this class
  */
 public class ChromeDriverSettings {
 

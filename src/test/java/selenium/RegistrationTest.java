@@ -1,11 +1,13 @@
+package selenium;
+
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.AccountPage;
-import pages.DashboardPage;
-import pages.LoginPage;
-import pages.RegistrationPage;
-import settings.ChromeDriverSettings;
+import selenium.pages.AccountPage;
+import selenium.pages.DashboardPage;
+import selenium.pages.LoginPage;
+import selenium.pages.RegistrationPage;
+import selenium.settings.ChromeDriverSettings;
 
 public class RegistrationTest extends ChromeDriverSettings {
 
